@@ -14,3 +14,15 @@ Kyte 0.1
 -매칭페이지
 -로딩페이지
 -채팅이 뜨는 페이지
+
+
+다운받는법:
+
+git clone 이레포의주소 .
+
+하시고
+
+파이썬 가상환경 설정(https://tutorial.djangogirls.org/ko/django_installation/)
+
+가상환경 내부에서 python manage.py runserver 
+
