@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+ <style>
+
+#absolute{
+    position:absolute;
+    top:100px;
+    left:200px;
+}
+#absolute2{
+    position:absolute;
+    top:100px;
+    left:800px;
+}
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #000;
+  height: 176px;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #000;
+}
+</style>
+<div id="absolute">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Kyte 게임매칭</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+        href = "{% url  'gameselect' %}">
+      Get Started
+    </a>
+  </div>
+</div>
+</div>
+
+<div id="absolute2">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">게임전적 보기</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+        href = "{% url  'mypage' %}">
+      My page
+    </a>
+  </div>
+</div>
+</div>
+
+{% endblock %}

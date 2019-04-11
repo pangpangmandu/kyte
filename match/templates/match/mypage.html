@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+    <style>
+    
+#absolute{
+    position:absolute;
+    top:50px;
+    left:80px;
+}
+
+
+.demo-card-square.mdl-card {
+  width: 1200px;
+  height: 800px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #000;
+}
+</style>
+<div id="absolute">
+<h1>마이 페이지</h1>
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text"> 당신의 랭킹은 {{user.profile.ranking}} /100 </h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    
+  
+  </div>
+  
+</div>
+</div>
+
+{% endblock %}

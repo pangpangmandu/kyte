@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+   
+      <style>
+    
+#absolute{
+    position:absolute;
+    top:100px;
+    left:500px;
+}
+
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+</style>
+<div id="absolute">
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__supporting-text">
+    
+    <h1> {{name}}게임을 검색중입니다 </h1>
+
+    <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+
+    <a href = "/match/result">
+    <button class="mdl-button mdl-js-button mdl-button--raised">
+    챗방으로 이동
+    </button>
+    </a>
+  </div>
+  
+</div>
+</div>
+    
+{% endblock %}

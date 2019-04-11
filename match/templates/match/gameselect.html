@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+    <style>
+    
+#absolute{
+    position:absolute;
+    top:100px;
+    left:500px;
+}
+
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+</style>
+<div id="absolute">
+<div class="demo-card-square mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title mdl-card--expand">
+    <h2 class="mdl-card__title-text">Game Search</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    
+    <form action="/match/gamesearch/" method="POST">
+      {% csrf_token %}
+      <p>게임 이름</p>
+      <input name="gamename" /> <br />
+      <p>게임할 인원 수</p>
+      <input name="player" /> <br />
+      <input type="submit" value="submit" />
+    </form>
+  </div>
+  
+</div>
+</div>
+{% endblock %}
