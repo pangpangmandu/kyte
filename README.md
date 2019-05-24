@@ -58,4 +58,7 @@ git clone https://github.com/pangpangmandu/kyte
   - Profile class의 경우 관리가 별로라서 추후에 로그인 기능과 함께 고치거나 다른 사용법을 알아봐야할 듯...
 - 19-5-12
   - 설명서 업데이트
-  -
+
+### DB 추가해야할 것
+ 채팅방 table
+

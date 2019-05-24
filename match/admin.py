@@ -6,6 +6,7 @@ from .models import Profile
 from .models import Game
 from .models import Rating
 from .models import Review
+from .models import Chatroom
 
 #django admin에서 profile을 관리하기 위함
 class ProfileInline(admin.StackedInline):
@@ -28,5 +29,6 @@ admin.site.register(User, CustomUserAdmin)
 admin.site.register(Game)
 admin.site.register(Rating)
 admin.site.register(Review)
+admin.site.register(Chatroom)
 
 

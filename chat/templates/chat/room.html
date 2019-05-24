@@ -178,13 +178,15 @@
          </div><!--new_message_head-->
 
          <div class="chat_area">
-         <!--<ul class="list-unstyled">
+
+
+         <ul class="list-unstyled">
          <li class="left clearfix">
                      <span class="chat-img1 pull-left">
                      <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg" alt="User Avatar" class="img-circle">
                      </span>
                      <div class="chat-body1 clearfix">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
+                        <p></p>
                         <div class="chat_time pull-right">09:40PM</div>
                      </div>
                   </li>
@@ -228,9 +230,9 @@
 
 
 
-         </ul>-->
+         </ul>
          <textarea id="chat-log" cols="100" rows="20"></textarea>
-         </div><!--chat_area-->
+         </div>
 
 
         <div class="message_write">
@@ -261,6 +263,25 @@
         var message = data['message'];
         document.querySelector('#chat-log').value += (message + '\n');
     };
+
+    /* document.querySelector('#chat-log').value += (message + '\n'); 대신 넣을 함수만들기
+     * 새롭게 <li>를 만들어서 내용삽입 (좌우가 구분 되도록 함수 두 개로 분리해서 만들기)
+     */
+
+    function showOptionsMenu(button) {
+      var songId = $(button).prevAll(".songId").val();    // button refers to the 'more.png' button
+      var menu = $(".optionsMenu"); // create a jquery object
+      var menuWidth = menu.width();
+
+      menu.find(".songId").val(songId);
+
+      var scrollTop = $(window).scrollTop();    // Distance from top of window to top of document
+      var elementOffset = $(button).offset().top;   // Distance from top of ducument to the button. $(button) is a jquery object.
+      var top = elementOffset - scrollTop;
+      var left = $(button).position().left;
+
+      menu.css({"top": top+"px", "left": left-menuWidth+"px", "display": "inline"});
+    }
 
     chatSocket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');

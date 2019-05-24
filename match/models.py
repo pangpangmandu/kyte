@@ -28,6 +28,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=100, null=True)
     introduction = models.TextField(blank=True)
     running = models.BooleanField(default=False)
+    chatroom = models.ForeignKey('match.Chatroom', on_delete=models.CASCADE, null=True)
 
     def makeranking(self):
         self.ranking = 50
@@ -63,7 +64,7 @@ class Rating(models.Model):
     recentUpdate = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.gameId
+        return self.rating
 
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
@@ -74,4 +75,13 @@ class Review(models.Model):
     matchDate = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.gameId
+        return self.point
+
+# 현재 개설되어 있는 채팅방의 아이디 / 이 아이디가 uri
+class Chatroom(models.Model):
+    id = models.AutoField(primary_key=True)
+    uri = models.CharField(max_length=20, unique=True, default='N/A')
+
+    def __str__(self):
+        return self.uri
+
