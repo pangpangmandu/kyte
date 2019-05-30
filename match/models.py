@@ -75,3 +75,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.gameId
+
+
+class MatchedUser(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    chatroom = models.CharField(max_length=10)
