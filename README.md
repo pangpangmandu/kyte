@@ -13,6 +13,7 @@ git clone https://github.com/pangpangmandu/kyte
   - 패키지 설치
     ```
     pip install -r requirements.txt
+    sudo pip install [package_name] --upgrade   # 패키지 업데이트
     ```
   - 현재 패키지 설정 requirements.txt에 기록
     ```
@@ -20,7 +21,14 @@ git clone https://github.com/pangpangmandu/kyte
     ```
 * docker redis server 실행 (채팅 기능)
   ```
+  ** 설치
+  brew install Docker 후에 홈페이지에서 도커 데스크탑 파일을 다운받아서 설치
+  docker version으로 설치 확인
+  docker pull redis
+
+  ** 실행
   sudo docker run -p 6379:6379 -d redis:2.8
+  (sudo docker run -p 6379:6379 -d redis 만 해도 가능)
   ```
 * django server 실행
   ```
@@ -48,3 +56,6 @@ git clone https://github.com/pangpangmandu/kyte
 - 19-04-20
   - 기본 DB 클래스들 세팅
   - Profile class의 경우 관리가 별로라서 추후에 로그인 기능과 함께 고치거나 다른 사용법을 알아봐야할 듯...
+- 19-5-12
+  - 설명서 업데이트
+  -
