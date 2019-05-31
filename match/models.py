@@ -20,15 +20,15 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
-    steamid = models.CharField(max_length=100, unique=True, default='N/A')
-    nickname = models.CharField(max_length=10, unique=True, default='N/A')
-    ranking = models.CharField(max_length=20)
+    steamid = models.CharField(max_length=100, unique=True)
+    nickname = models.CharField(max_length=10, unique=True)
+    ranking = models.CharField(max_length=20, default=0)
     ##location = models.CharField(max_length=2, choices=COUNTRIES)
     signUpDate = models.DateField(default=timezone.now)
     email = models.CharField(max_length=100, null=True)
     introduction = models.TextField(blank=True)
     running = models.BooleanField(default=False)
-    chatroom = models.ForeignKey('match.Chatroom', on_delete=models.CASCADE, null=True)
+    chatroom = models.ForeignKey('match.Chatroom', on_delete=models.CASCADE, null=True, blank=True)
 
     def makeranking(self):
         self.ranking = 50
