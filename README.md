@@ -34,6 +34,13 @@ git clone https://github.com/pangpangmandu/kyte
   ```
   python manage.py runserver
   ```
+* python manage.py shell 에서 게임시드 추가
+
+  ```
+  python manage.py shell
+  >>> from match.models import GameSeed
+  >>> GameSeed.seed()
+  ```
 
 
 ## 작업 내용
