@@ -20,8 +20,8 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
-    steamid = models.CharField(max_length=100, unique=True, default='N/A')
-    nickname = models.CharField(max_length=10, unique=True, default='N/A')
+    steamid = models.CharField(max_length=100, unique=True)
+    nickname = models.CharField(max_length=10, unique=True)
     ranking = models.CharField(max_length=20)
     ##location = models.CharField(max_length=2, choices=COUNTRIES)
     signUpDate = models.DateField(default=timezone.now)
@@ -81,3 +81,17 @@ class MatchedUser(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     chatroom = models.CharField(max_length=10)
+
+
+class GameSeed(models.Model):
+    id = models.AutoField(primary_key=True)
+    gamename = models.TextField(default="gamename")
+    users = models.ManyToManyField(Profile,related_name = 'seeds',null = True)
+    def seed():
+        GameSeed.objects.create(gamename="Don't Starve")
+        GameSeed.objects.create(gamename="BorderLands")
+        GameSeed.objects.create(gamename="GTA")
+        GameSeed.objects.create(gamename="BattelGrounds")
+        GameSeed.objects.create(gamename="Total War")
+        GameSeed.objects.create(gamename="Stardew Valley")
+          
