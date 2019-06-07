@@ -12,12 +12,12 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <a href ="{% url 'index' %}" ><span class="mdl-layout-title"><h1>Kyte</h1></span> </a>
+      <a href ="{% url 'main' %}" ><span class="mdl-layout-title"><h1>마이스쿼드</h1></span> </a>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        
+
         {% if user.is_authenticated %}
              <a class="mdl-navigation__link" href="">{{ user.get_username }}님 안녕하세요</a>
              <a class="mdl-navigation__link" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
@@ -30,7 +30,7 @@
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <a href="{% url 'index' %}"><span class="mdl-layout-title">Kyte</span></a>
+    <a href="{% url 'main' %}"><span class="mdl-layout-title">마이스쿼드</span></a>
     <nav class="mdl-navigation">
     {% if user.is_authenticated %}
              <a class="mdl-navigation__link" href="{% url 'mypage'%}">마이 페이지</a>
@@ -38,23 +38,23 @@
              <a class="mdl-navigation__link" href="{% url 'signup' %}">회원가입</a>
              <a class="mdl-navigation__link" href="{% url 'login'%}?next={{request.path}}">로그인</a>
         {% endif %}
-      
+
       <a class="mdl-navigation__link" href=""></a>
       <a class="mdl-navigation__link" href=""></a>
     </nav>
   </div>
   <main class="mdl-layout__content">
     <div class="page-content">
-    
+
         {% block content %}
-          
+
         {% endblock %}
-        
-            
+
+
     </div>
   </main>
 
-  <footer class="mdl-mini-footer">
+  {% comment %} <footer class="mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Kyte</div>
     <ul class="mdl-mini-footer__link-list">
@@ -62,7 +62,7 @@
       <li><a href="">Privacy & Terms</a></li>
     </ul>
   </div>
-</footer>
+</footer> {% endcomment %}
 </div>
 
   </body>

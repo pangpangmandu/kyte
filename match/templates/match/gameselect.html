@@ -31,7 +31,12 @@
     <form action="/match/gamesearch/" method="POST">
       {% csrf_token %}
       <p>게임 이름</p>
-      <input name="gamename" /> <br />
+      <select name="gamename">
+        {% for g in ugame %}
+           <option value="{{g.gamename}}">{{g.gamename}}</option>
+        {% endfor %}
+     </select>
+
       <p>게임할 인원 수</p>
       <input name="player" /> <br />
       <input type="submit" value="submit" />

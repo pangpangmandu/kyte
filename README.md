@@ -34,6 +34,13 @@ git clone https://github.com/pangpangmandu/kyte
   ```
   python manage.py runserver
   ```
+* python manage.py shell 에서 게임시드 추가
+
+  ```
+  python manage.py shell
+  >>> from match.models import GameSeed
+  >>> GameSeed.seed()
+  ```
 
 
 ## 작업 내용
@@ -47,6 +54,13 @@ git clone https://github.com/pangpangmandu/kyte
   - 매칭 페이지
   - 로딩 페이지
   - 채팅 페이지
+
+- 19-06-06
+  - 로고 클릭 시 채팅방 이동 문제 해결
+  - 첫 페이지에서 로그인하도록 변경
+  - 게임시드 모델 (프로파일과 다대다연결) 생성. !** 쉘에서 GameSeed.seed() 실행 시켜주어야 시드가 작성됨 **!
+  - 등록된 게임시드중에서 유저가 자기 프로파일에 게임을 등록하도록함
+  - 게임 매칭시에 자기가 등록한 게임만 매칭 시작할 수 있음
 
 ### 윤태규
 - 19-04-19

@@ -6,12 +6,12 @@
 
 #absolute{
     position:absolute;
-    top:100px;
+    top:300px;
     left:200px;
 }
 #absolute2{
     position:absolute;
-    top:100px;
+    top:300px;
     left:800px;
 }
 
@@ -25,7 +25,26 @@
 .demo-card-wide > .mdl-card__menu {
   color: #000;
 }
+.addgame{
+  position:absolute;
+  top:100px;
+  left:200px;
+}
+.current-user-game{
+  position:absolute;
+  top:80px;
+  left:400px;
+}
+
+#absolute3{
+  position:absolute;
+  top: 200px;
+  right:200px;
+}
 </style>
+
+{% if user.is_authenticated %}
+
 <div id="absolute">
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
@@ -57,5 +76,67 @@
   </div>
 </div>
 </div>
+
+
+<div class="addgame">
+
+  <form action="/match/gameadd/" method="post">
+  {% csrf_token %}
+  <select name="game">
+       {% for g in gameseeds %}
+    <option value="{{g.gamename}}">{{g.gamename}}</option>
+     {% endfor %}
+  </select>
+  <br><br>
+   <input type="submit" class="mdl-button mdl-js-button mdl-button--raised " value="게임추가">
+</form>
+
+</div>
+
+
+  <div class="current-user-game">
+  </br>
+  현재 추가한 게임</br>
+  </br>
+    {% for u in ugame %}
+     {{u.gamename}}</br>
+
+    {% endfor %}
+  </div>
+
+{% else %}
+
+<div id="absolute3">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+<form method="POST" action="{%url 'login'%}">
+    {% csrf_token %}
+    사용자 이름:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    <br>
+    비밀번호:
+    <br>
+    <input name="password" type="password" value="">
+    <br>
+    <br>
+    <input type="submit" value="로그인">
+</form>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <h2 class="mdl-card__title-text"> 로그인하기 </h2>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+        href = "{% url  'signup' %}">
+      회원가입하기
+    </a>
+  </div>
+</div>
+</div>
+
+
+{% endif %}
 
 {% endblock %}
