@@ -20,6 +20,7 @@
     url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
 }
 </style>
+<<<<<<< HEAD
 <div id="absolute">
 <div class="demo-card-square mdl-card mdl-shadow--2dp">
   <div class="mdl-card__supporting-text">
@@ -51,5 +52,40 @@
     }
     
   </script>
+=======
+
+
+<div id="absolute">
+  <div class="demo-card-square mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+      <div id="loading">
+        <h3> {{name}}게임을 검색중입니다 </h3>
+        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+      </div>
+      <div id="matched">
+        <h3> 매치 성공 </h3>
+        <a href = "/chat/{{chatroom}}">
+          <button onClick="action()" id="chatbutton" class="mdl-button mdl-js-button mdl-button--raised">
+          채팅방으로 이동
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var chat = "{{chatroom}}";
+  
+  if(chat == "null") {
+    document.getElementById('loading').style.visibility = 'visible';
+    document.getElementById('matched').style.visibility = 'hidden';
+  } else {
+    document.getElementById('loading').style.visibility = 'hidden';
+    document.getElementById('matched').style.visibility = 'visible';
+  }
+  
+</script>
+>>>>>>> search_select
     
 {% endblock %}

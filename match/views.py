@@ -29,7 +29,6 @@ def gamesearch(request):
         print('Not in matched user')
         return render(request, 'match/gamesearch.html',{'name':name, 'num': num, 'chatroom': 'null'})
 
-
     #print(request.user.username)
     return render(request, 'match/gamesearch.html',{'name':name, 'num': num})
 
