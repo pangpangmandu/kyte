@@ -1,35 +1,52 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
-  <head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <meta charset="utf-8">
-    <title>Kyte</title>
-  </head>
-  <body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <a href ="{% url 'main' %}" ><span class="mdl-layout-title"><h1>마이스쿼드</h1></span> </a>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">            <!--rendering properly in mobile devices-->
 
-        {% if user.is_authenticated %}
-             <a class="mdl-navigation__link" href="">{{ user.get_username }}님 안녕하세요</a>
-             <a class="mdl-navigation__link" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
-        {% else %}
-             <a class="mdl-navigation__link" href="{% url 'signup' %}">회원가입</a>
-             <a class="mdl-navigation__link" href="{% url 'login'%}?next={{request.path}}">로그인</a>
-        {% endif %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 
-      </nav>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
+        <link rel="stylesheet" type="text/css" href="../static/match/css/superslides.css">
+        <link rel="stylesheet" type="text/css" href="../static/match/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="../static/match/css/style.css">
+
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <title>Kyte</title>
+    </head>
+
+
+    <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                  <!-- Title -->
+                  <a href ="{% url 'main' %}" ><span class="mdl-layout-title"><h1>마이스쿼드</h1></span> </a>
+                  <!-- Add spacer, to align navigation to the right -->
+                  <div class="mdl-layout-spacer"></div>
+                  <!-- Navigation. We hide it in small screens. -->
+
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+
+                    {% if user.is_authenticated %}
+                        <a class="mdl-navigation__link" href="">{{ user.get_username }}님 안녕하세요</a>
+                        <a class="mdl-navigation__link" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+                    {% else %}
+                        <a class="mdl-navigation__link" href="{% url 'signup' %}">회원가입</a>
+                        <a class="mdl-navigation__link" href="{% url 'login'%}?next={{request.path}}">로그인</a>
+                    {% endif %}
+
+                </nav>
+            </div>
+        </header>
+    <div class="mdl-layout__drawer">
     <a href="{% url 'main' %}"><span class="mdl-layout-title">마이스쿼드</span></a>
     <nav class="mdl-navigation">
     {% if user.is_authenticated %}
@@ -42,8 +59,9 @@
       <a class="mdl-navigation__link" href=""></a>
       <a class="mdl-navigation__link" href=""></a>
     </nav>
-  </div>
-  <main class="mdl-layout__content">
+    </div>
+
+    <main class="mdl-layout__content">
     <div class="page-content">
 
         {% block content %}
@@ -52,7 +70,7 @@
 
 
     </div>
-  </main>
+    </main>
 
   {% comment %} <footer class="mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
@@ -62,8 +80,21 @@
       <li><a href="">Privacy & Terms</a></li>
     </ul>
   </div>
-</footer> {% endcomment %}
+</footer>
+{% endcomment %}
 </div>
 
-  </body>
+  <script src="../static/match/js/jquery.superslides.min.js"></script>
+  <script src="../static/match/js/typed.min.js"></script>
+  <script src="../static/match/js/owl.carousel.min.js"></script>
+  <script src="../static/match/js/jquery.easypiechart.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script src="../static/match/js/script.js"></script>
+
+</body>
 </html>

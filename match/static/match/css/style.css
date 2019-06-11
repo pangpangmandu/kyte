@@ -1,0 +1,123 @@
+#slides {
+    height: 500px;
+    margin: auto;
+    margin-top:70px;
+}
+
+.titleMessage .heading {
+    margin-top: 91px;
+}
+
+#mainFunctions {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.matchService {
+    height: 300px;
+    position: relative;
+}
+
+#matchStart{
+    position: absolute;
+    right: 100px;
+    width: 30%;
+}
+#myPage{
+    position: absolute;
+    left: 100px;
+    width: 30%;
+}
+
+.demo-card-wide.mdl-card {
+  width: 100%;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #000;
+  height: 100%;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #000;
+}
+
+.addgame{
+  position: absolute;
+  top:100px;
+  left:200px;
+}
+.current-user-game{
+    display: block;
+    position:relative;
+    top:80px;
+}
+
+#absolute3{
+  position:relative;
+}
+
+
+
+
+.body {
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    letter-spacing: 1px;
+}
+
+.overlay {
+  width: 97%;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.slides-navigation {
+  z-index: 6;
+}
+
+.slides-navigation .prev,
+.slides-navigation .next {
+  width: 47px;
+  height: 47px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slides-navigation a.prev {
+  left: 20px;
+  background-image: url(../img/icons/prev.png);
+}
+
+.slides-navigation a.next {
+  right: 20px;
+  background-image: url(../img/icons/next.png);
+}
+
+.titleMessage {
+  position: absolute;
+    width: 100%;
+    height: 250px;
+    top: 50%;
+    z-index: 5;
+    text-align: center;
+    margin-top: -125px;
+}
+
+.titleMessage .heading p {
+    color: #fff;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    font-weight: 100;
+    letter-spacing: 7px;
+}
+
+.titleMessage .heading .main {
+    font-size: 50px;
+}
+
+.titleMessage .heading .sub {
+    font-size: 23px;
+    letter-spacing: 3px;
+}

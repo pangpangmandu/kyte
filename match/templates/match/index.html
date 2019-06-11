@@ -1,108 +1,96 @@
-
 {% extends 'base.html' %}
 {% block content %}
 
- <style>
-
-#absolute{
-    position:absolute;
-    top:300px;
-    left:200px;
-}
-#absolute2{
-    position:absolute;
-    top:300px;
-    left:800px;
-}
-
-.demo-card-wide.mdl-card {
-  width: 512px;
-}
-.demo-card-wide > .mdl-card__title {
-  color: #000;
-  height: 176px;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #000;
-}
-.addgame{
-  position:absolute;
-  top:100px;
-  left:200px;
-}
-.current-user-game{
-  position:absolute;
-  top:80px;
-  left:400px;
-}
-
-#absolute3{
-  position:absolute;
-  top: 200px;
-  right:200px;
-}
-</style>
-
 {% if user.is_authenticated %}
 
-<div id="absolute">
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Kyte 게임매칭</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-        href = "{% url  'gameselect' %}">
-      Get Started
-    </a>
-  </div>
-</div>
+<div class="loader">
+  <div class="inner"></div>
 </div>
 
-<div id="absolute2">
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">게임전적 보기</h2>
+<div id="slides" class="col-md-9">
+  <div class="overlay"></div>
+
+  <div class="slides-container">
+    <img src="../../static/match/img/slide1.jpg" alt="">
+    <img src="../../static/match/img/slide2.jpg" alt="">
+    <img src="../../static/match/img/slide3.jpg" alt="">
   </div>
-  <div class="mdl-card__supporting-text">
+
+  <div class="titleMessage">
+    <div class="heading">
+      <p class="main">My Squad</p>
+      <p class="sub typed"></p>
+    </div>
   </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-        href = "{% url  'mypage' %}">
-      My page
-    </a>
-  </div>
-</div>
+
+  <nav class="slides-navigation">
+    <a href="#" class="next"></a>
+    <a href="#" class="prev"></a>
+  </nav>
 </div>
 
 
-<div class="addgame">
 
-  <form action="/match/gameadd/" method="post">
-  {% csrf_token %}
-  <select name="game">
-       {% for g in gameseeds %}
-    <option value="{{g.gamename}}">{{g.gamename}}</option>
-     {% endfor %}
-  </select>
-  <br><br>
-   <input type="submit" class="mdl-button mdl-js-button mdl-button--raised " value="게임추가">
-</form>
+<div id="mainFunctions" class="col-md-12">
+    <div class="container">
 
+
+
+
+        <div class='matchService col-md-12'>
+            <div class="addgame">
+                <form action="/match/gameadd/" method="post">
+                    {% csrf_token %}
+                    <select name="game">
+                        {% for g in gameseeds %}
+                        <option value="{{g.gamename}}">{{g.gamename}}</option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
+                    <input type="submit" class="mdl-button mdl-js-button mdl-button--raised " value="게임추가">
+                </form>
+            </div>
+            <div class="current-user-game col-md-12">
+                </br>
+                현재 추가한 게임</br>
+                </br>
+                {% for u in ugame %}
+                {{u.gamename}}
+                </br>
+
+                {% endfor %}
+            </div>
+            <div id="matchStart" class="col-md-4">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Kyte 게임매칭</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text"></div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href = "{% url  'gameselect' %}">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="myPage">
+                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">게임전적 보기</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text"></div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href = "{% url  'mypage' %}">
+                            My page
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-
-  <div class="current-user-game">
-  </br>
-  현재 추가한 게임</br>
-  </br>
-    {% for u in ugame %}
-     {{u.gamename}}</br>
-
-    {% endfor %}
-  </div>
 
 {% else %}
 
