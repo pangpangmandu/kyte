@@ -28,26 +28,34 @@
 
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <a href ="{% url 'index' %}" ><span class="mdl-layout-title"><h1>Kyte</h1></span> </a>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="logo" role="link" tabindex="0">
+                  <img src="../../static/chat/logo.png">
+                </span>
+                  <!-- Title -->
+                  <a class="siteTitle" href ="{% url 'main' %}" style="text-decoration:none;">
+                    <span class="mdl-layout-title">
+                      <h1 style="font-size: 2.5rem; margin-bottom: 20px;">mySquad</h1>
+                    </span>
+                  </a>
+                  <!-- Add spacer, to align navigation to the right -->
+                  <div class="mdl-layout-spacer"></div>
+                  <!-- Navigation. We hide it in small screens. -->
 
-        {% if user.is_authenticated %}
-             <a class="mdl-navigation__link" href="">{{ user.get_username }}님 안녕하세요</a>
-             <a class="mdl-navigation__link" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
-        {% else %}
-             <a class="mdl-navigation__link" href="{% url 'signup' %}">회원가입</a>
-             <a class="mdl-navigation__link" href="{% url 'login'%}?next={{request.path}}">로그인</a>
-        {% endif %}
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
 
-      </nav>
-    </div>
-  </header>
+                    {% if user.is_authenticated %}
+                        <a class="mdl-navigation__link" href="">{{ user.get_username }}님 안녕하세요</a>
+                        <a class="mdl-navigation__link" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+                    {% else %}
+                        <a class="mdl-navigation__link" href="{% url 'signup' %}">회원가입</a>
+                        <a class="mdl-navigation__link" href="{% url 'login'%}?next={{request.path}}">로그인</a>
+                    {% endif %}
+
+                </nav>
+            </div>
+      </header>
   <div class="mdl-layout__drawer">
     <a href="{% url 'index' %}"><span class="mdl-layout-title">Kyte</span></a>
     <nav class="mdl-navigation">
@@ -253,16 +261,6 @@
 
 
 
-
-<footer class="mdl-mini-footer">
-  <div class="mdl-mini-footer__left-section">
-    <div class="mdl-logo">Kyte</div>
-    <ul class="mdl-mini-footer__link-list">
-      <li><a href="">Help</a></li>
-      <li><a href="">Privacy & Terms</a></li>
-    </ul>
-  </div>
-</footer>
 </div>
 </body>
 
@@ -274,10 +272,10 @@
       var today = new Date();
       var time = today.getHours() + ":" + today.getMinutes();
       if(name === id) {
-        $("#chat-log").append("<li class='left clearfix admin_chat'><div class='chat-body1 clearfix'><p>" + message + "</p><div class='chat_time pull-right'>"+ time +"</div></div></li>");
+        $("#chat-log").append("<li class='left clearfix admin_chat'><div style='text-align:right; padding-right: 65px;'>" + name + "</div><div class='chat-body1 clearfix'><p style='text-align:right;''>" + message + "</p><div class='chat_time pull-right'>"+ time +"</div></div></li>");
       }
       else {
-        $("#chat-log").append("<li class='left clearfix'><span class='chat-img1 pull-left'><img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><p>" + message + "</p><div class='chat_time pull-left'>"+ time +"</div></div></li>");
+        $("#chat-log").append("<li class='left clearfix'><span style='padding-left: 15px;'>" + name + "</span><span class='chat-img1 pull-left'><img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><p>" + message + "</p><div class='chat_time pull-left'>"+ time +"</div></div></li>");
       }
       $('#chat_area').animate({scrollTop: $('#chat_area').prop("scrollHeight")}, 500);
     }
