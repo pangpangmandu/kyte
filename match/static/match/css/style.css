@@ -1,3 +1,20 @@
+.mdl-layout__header{
+    background-color: #2f3542;
+}
+
+.mdl-layout-title{
+    color: #ffffff;
+}
+
+.mdl-layout__header-row .logo {
+    margin-left: -16px;
+    margin-bottom: 5px;
+}
+
+.mdl-layout__header-row .logo img {
+    width: 45px;
+}
+
 #slides {
     height: 480px;
     margin: auto;
@@ -67,7 +84,7 @@
 }
 
 .overlay {
-  width: 97%;
+  width: 97.55%;
   height: 100%;
   position: absolute;
   z-index: 3;
@@ -92,7 +109,7 @@
 }
 
 .slides-navigation a.next {
-  right: 20px;
+  right: 48px;
   background-image: url(../img/icons/next.png);
 }
 
