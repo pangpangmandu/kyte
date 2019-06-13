@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 {% if user.is_authenticated %}
+
 
 <div class="loader">
   <div class="inner"></div>
@@ -29,7 +31,7 @@
   </nav>
 </div>
 
- 
+
   <div class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">지금 바로 게임을 시작하세요!</h1>
@@ -47,7 +49,7 @@
         {% for g in ugame %}
         <!--Card Start-->
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">  
+          <div class="card mb-4 shadow-sm">
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
                   <defs>
                       <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
@@ -61,9 +63,9 @@
               <p class="card-text">{{g.gamename}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  
+
                   <button id="{{g.gamename}}startbutton" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">시작하기</button>
-                  
+
                 </div>
                 <small class="text-muted">대기중인 인원 : 9</small>
               </div>
@@ -96,7 +98,7 @@
               }
             }).fail(function() {
               //some error logic
-            });  
+            });
           }
           $("#{{g.gamename}}startbutton").click(function(){
             document.getElementById('loading').style.visibility = 'visible';
@@ -112,108 +114,56 @@
   </div>
 
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!-- 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-
-
-<!-- <div id="mainFunctions" class="col-md-12">
-    <div class="container">
-
-
-
-
-        <div class='matchService col-md-12'>
-            <div class="addgame">
-                <form action="/match/gameadd/" method="post">
-                    {% csrf_token %}
-                    <select name="game">
-                        {% for g in gameseeds %}
-                        <option value="{{g.gamename}}">{{g.gamename}}</option>
-                        {% endfor %}
-                    </select>
-                    <br><br>
-                    <input type="submit" class="mdl-button mdl-js-button mdl-button--raised " value="게임추가">
-                </form>
-            </div>
-            <div class="current-user-game col-md-12">
-                </br>
-                현재 추가한 게임</br>
-                </br>
-                {% for u in ugame %}
-                {{u.gamename}}
-                </br>
-
-                {% endfor %}
-            </div>
-            <div id="matchStart" class="col-md-4">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Kyte 게임매칭</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text"></div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href = "{% url  'gameselect' %}">
-                            Get Started
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="myPage">
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">게임전적 보기</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text"></div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href = "{% url  'mypage' %}">
-                            My page
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
 {% else %}
 
-<div id="absolute3">
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-<form method="POST" action="{%url 'login'%}">
-    {% csrf_token %}
-    사용자 이름:
-    <br>
-    <input name="username" type="text" value="">
-    <br>
-    <br>
-    비밀번호:
-    <br>
-    <input name="password" type="password" value="">
-    <br>
-    <br>
-    <input type="submit" value="로그인">
-</form>
-  </div>
-  <div class="mdl-card__supporting-text">
-    <h2 class="mdl-card__title-text"> 로그인하기 </h2>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-        href = "{% url  'signup' %}">
-      회원가입하기
-    </a>
+
+
+<div id="background">
+
+  <div id="loginContainer">
+
+    <div id="inputContainer">
+
+      <form method="POST" action="{%url 'login'%}">
+          {% csrf_token %}
+          <h2>Login to your account</h2>
+          <p>
+            <label for="loginUsername">Your ID</label>
+            <input id="loginUsername" name="username" type="text" value="" placeholder="e.g. bartSimpson" required>
+          </p>
+
+          <p>
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" name="password" placeholder="Your password" required>
+          </p>
+
+          <button type="submit" name="loginButton">LOG IN</button>
+
+          <div class="hasAccountText">
+            <a class="hasAccountText" href = "{% url  'signup' %}">
+              <span id="hideLogin">Don't have an account yet? Sign up here.</span>
+            </a>
+          </div>
+      </form>
+
+    </div>
+
+    <div id="loginText">
+      <h1>Find your gamemates</h1>
+      <h2>Matching service for thousands steam games for free!</h2>
+      <ul>
+        <li>Discover new game that you like</li>
+        <li>Create your own game list</li>
+        <li>Chat with your game friends</li>
+      </ul>
+    </div>
+
   </div>
 </div>
-</div>
+
 
 
 {% endif %}
 
-{% endblock %}
+{% endblock content %}
+
