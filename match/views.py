@@ -39,8 +39,6 @@ def gameadd(request):
 def gamesearch(request):
     if request.method=='POST':
         gamename = request.POST.get('name', None)
-        print(gamename)
-        print(request.user.username)
         u = User.objects.get(username=request.user.username)
         pf = Profile.objects.get(user_id=u.id)
         pf.running = True

@@ -96,6 +96,7 @@ class GameSeed(models.Model):
     id = models.AutoField(primary_key=True)
     gamename = models.TextField(default="gamename")
     users = models.ManyToManyField(Profile,related_name = 'seeds',null = True)
+    imgfile = models.TextField(null = True)
     def seed():
         GameSeed.objects.create(gamename="Don't Starve")
         GameSeed.objects.create(gamename="BorderLands")

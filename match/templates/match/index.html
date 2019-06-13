@@ -52,22 +52,22 @@
           <div class="card mb-4 shadow-sm">  
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
                   <defs>
-                      <pattern id="{{g.gamename}}img" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                          <image xlink:href="../../static/match/img/{{g.gamename}}.png" x="0" y="0"
+                      <pattern id="{{g.id}}pattern" patternUnits="userSpaceOnUse" width="100%" height="100%">
+                          <image xlink:href="../../static/match/img/{{g.imgfile}}" x="0" y="0"
                               width="100%" height="100%" />
                       </pattern>
                   </defs>
-                  <rect x="0" y="0" width="100%" height="100%" fill="url(#{{g.gamename}}img)"/>
+                  <rect x="0" y="0" width="100%" height="100%" fill="url(#{{g.id}}pattern)"/>
               </svg>
             <div class="card-body">
               <p class="card-text">{{g.gamename}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   
-                  <button id="{{g.gamename}}startbutton" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">시작하기</button>
+                  <button id="{{g.id}}startbutton" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">시작하기</button>
                   
                 </div>
-                <small class="text-muted">대기중인 인원 : 9</small>
+                <small class="text-muted">대기중인 인원 : 0</small>
 
             </div>
           </div>
@@ -86,24 +86,44 @@
               var returnval = JSON.parse(data)
               var stat = $("#exampleModalCenter").attr("style");
               if(returnval.chatroom == null && stat == "display: block;"){
+
                 document.getElementById('loading').style.visibility = 'visible';
-                document.getElementById('matched').style.visibility = 'hidden';
+                document.getElementById('loading').style.height = null;
+                var sections = document.getElementsByClassName('matched');
+                for( var i = 0; i < sections.length; i++ ){
+                  var section1 = sections.item(i);
+                  section1.style.visibility = 'hidden';
+                  section1.style.height = '0';
+                }
+
                 setTimeout(function () {
                       getmatchdata();
                 }, 1000)
               }else{
                 $("#chatlink").attr("href", "/chat/"+returnval.chatroom)
                 document.getElementById('loading').style.visibility = 'hidden';
-                document.getElementById('matched').style.visibility = 'visible';
+                document.getElementById('loading').style.height = '0';
+                var sections = document.getElementsByClassName('matched');
+                for( var i = 0; i < sections.length; i++ ){
+                  var section1 = sections.item(i);
+                  section1.style.visibility = 'visible';
+                  section1.style.height = null;
+                }
               }
             }
           }).fail(function() {
             //some error logic
           });
         }
-        $("#{{g.gamename}}startbutton").click(function(){
+        $("#{{g.id}}startbutton").click(function(){
           document.getElementById('loading').style.visibility = 'visible';
-          document.getElementById('matched').style.visibility = 'hidden';
+          document.getElementById('loading').style.height = null;
+          var sections = document.getElementsByClassName('matched');
+                for( var i = 0; i < sections.length; i++ ){
+                  var section1 = sections.item(i);
+                  section1.style.visibility = 'hidden';
+                  section1.style.height = '0';
+                }
           setTimeout(function(){
             getmatchdata();
           }, 2000)
