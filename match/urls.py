@@ -7,7 +7,6 @@ urlpatterns = [
     path('gamesearch/', views.gamesearch, name="gamesearch"),
     path('result', views.result, name="result"),
     path('mypage', views.mypage, name="mypage"),
-
     path('assessment/', views.assessment, name= "assessment"),
     path('result/', views.result, name="result"),
     path('mypage/', views.mypage, name="mypage"),
