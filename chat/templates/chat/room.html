@@ -216,34 +216,24 @@
 
             <div class="row" id="post-review-box" style="display:none;">
                 <div class="col-md-12">
-                    <form accept-charset="UTF-8" action="{% url 'index' %}" method="post">
-                        <h5>Player1의 실력에 대해서 점수를 매긴다면?</h5>
-                        <input id="ratings-hidden" name="rating" type="hidden">
-                        <div class="stars starrr" data-rating="0"></div>
+                    <form accept-charset="UTF-8" action="http://localhost:8000/" method="post">
+                      {% csrf_token %}
+                      <div id="surveyContainer">
 
-                        <h5>Player2의 실력에 대해서 점수를 매긴다면?</h5>
-                        <input id="ratings-hidden" name="rating" type="hidden">
-                        <div class="stars starrr" data-rating="0"></div>
+                        <!-- This part will be filled with jQuery -->
 
-                        <h5>Player1의 인성에 대해서 점수를 매긴다면?</h5>
-                        <input id="ratings-hidden" name="rating" type="hidden">
-                        <div class="stars starrr" data-rating="0"></div>
+                      </div>
 
-                        <h5>Player2의 인성에 대해서 점수를 매긴다면?</h5>
-                        <input id="ratings-hidden" name="rating" type="hidden">
-                        <div class="stars starrr" data-rating="0"></div>
+                      <h5>Additional Comment & Overall Review</h5>
+                      <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
 
-                        <br><br>
-
-                        <h5>Additional Comment & Overall Review</h5>
-                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-
-                        <div class="text-right">
-                            <div class="stars starrr" data-rating="0"></div>
-                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                            <button id="saveButton" class="btn btn-success btn-lg" type="submit">Save</button>
-                        </div>
+                      <div class="text-right">
+                          <div class="stars starrr" data-rating="0"></div>
+                          <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                            <span class="glyphicon glyphicon-remove"></span>Cancel
+                          </a>
+                          <button id="saveButton" class="btn btn-success btn-lg" type="submit">Save</button>
+                      </div>
                     </form>
                 </div>
             </div>
@@ -284,6 +274,25 @@
         var element = document.getElementById(id);
         element.scrollTop = element.scrollHeight - element.clientHeight;
     }
+
+    $(document).ready(function() {
+      if(id === "user1") {
+        $("#surveyContainer").append("<h5>user2의 리더십은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+        $("#surveyContainer").append("<h5>user2의 실력은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+        $("#surveyContainer").append("<h5>user2의 팀워크은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+        $("#surveyContainer").append("<h5>user2의 친절함은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+      }
+      else {
+        $("#surveyContainer").append("<h5>user1의 리더십은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+        $("#surveyContainer").append("<h5>user1의 실력은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+        $("#surveyContainer").append("<h5>user1의 팀워크은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+        $("#surveyContainer").append("<h5>user1의 친절함은 몇 점이었나요?</h5><input id='ratings-hidden' name='rating' type='hidden'><div class='stars starrr' data-rating='0'></div>");
+      }
+
+      $("#surveyContainer").append("<br><br>")
+
+      /*$("#surveyContainer").append("<div class='text-right'><div class='stars starrr' data-rating='0'></div><a class='btn btn-danger btn-sm' href='#' id='close-review-box' style='display:none; margin-right: 10px;'><span class='glyphicon glyphicon-remove'></span>Cancel</a><button id='saveButton' class='btn btn-success btn-lg' type='submit'>Save</button></div>");*/
+    });
 
 
 

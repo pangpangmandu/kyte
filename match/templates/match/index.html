@@ -40,6 +40,16 @@
       <a href="#" class="btn btn-primary my-2">시작하기</a>
       <a href="#" class="btn btn-secondary my-2">취소하기</a>
     </p>
+    <div class="searchContainer">
+      <form action="http://localhost:8000/" method="GET">
+        <div class="searchBarContainer">
+          <input class="searchBox" type="text" name="term" tabindex="-1">
+          <!--<button class="searchButton">
+            <img src="../../static/match/img/icons/search.png">
+          </button>-->
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -49,7 +59,7 @@
         {% for g in ugame %}
         <!--Card Start-->
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">  
+          <div class="card mb-4 shadow-sm">
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
                   <defs>
                       <pattern id="{{g.id}}pattern" patternUnits="userSpaceOnUse" width="100%" height="100%">
@@ -63,9 +73,9 @@
               <p class="card-text">{{g.gamename}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  
+
                   <button id="{{g.id}}startbutton" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">시작하기</button>
-                  
+
                 </div>
                 <small class="text-muted">대기중인 인원 : 0</small>
 
