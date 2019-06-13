@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 {% if user.is_authenticated %}
 
+<div class="page-content">
 <div class="loader">
   <div class="inner"></div>
 </div>
@@ -29,17 +31,17 @@
   </nav>
 </div>
 
- 
-  <div class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">지금 바로 게임을 시작하세요!</h1>
-      <p class="lead text-muted">가장 많은 유저가 즐기고 있는 게임을 바로 시작할 수 있습니다.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">시작하기</a>
-        <a href="#" class="btn btn-secondary my-2">취소하기</a>
-      </p>
-    </div>
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">지금 바로 게임을 시작하세요!</h1>
+    <p class="lead text-muted">가장 많은 유저가 즐기고 있는 게임을 바로 시작할 수 있습니다.</p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">시작하기</a>
+      <a href="#" class="btn btn-secondary my-2">취소하기</a>
+    </p>
   </div>
+</div>
 
   <div class="album py-0 bg-light">
     <div class="container">
@@ -66,83 +68,105 @@
                   
                 </div>
                 <small class="text-muted">대기중인 인원 : 9</small>
-              </div>
+
             </div>
           </div>
         </div>
-        <!--Card End-->
-        <script>
-          var url="/match/gamesearch/";
-          function getmatchdata() {
-            $.ajax({
-              type: "POST",
-              url: url,
-              data: {'name' : '{{g.gamename}}'},
-              dataType: 'html',
-              success: function(data){
-                var returnval = JSON.parse(data)
-                var stat = $("#exampleModalCenter").attr("style");
-                if(returnval.chatroom == null && stat == "display: block;"){
-                  document.getElementById('loading').style.visibility = 'visible';
-                  document.getElementById('matched').style.visibility = 'hidden';
-                  setTimeout(function () {
-                        getmatchdata();
-                  }, 1000)
-                }else{
-                  $("#chatlink").attr("href", "/chat/"+returnval.chatroom)
-                  document.getElementById('loading').style.visibility = 'hidden';
-                  document.getElementById('matched').style.visibility = 'visible';
-                }
-              }
-            }).fail(function() {
-              //some error logic
-            });  
-          }
-          $("#{{g.gamename}}startbutton").click(function(){
-            document.getElementById('loading').style.visibility = 'visible';
-            document.getElementById('matched').style.visibility = 'hidden';
-            setTimeout(function(){
-              getmatchdata();
-            }, 2000)
-          })
-        </script>
-        {% endfor %}
       </div>
+      <!--Card End-->
+      <script>
+        var url="/match/gamesearch/";
+        function getmatchdata() {
+          $.ajax({
+            type: "POST",
+            url: url,
+            data: {'name' : '{{g.gamename}}'},
+            dataType: 'html',
+            success: function(data){
+              var returnval = JSON.parse(data)
+              var stat = $("#exampleModalCenter").attr("style");
+              if(returnval.chatroom == null && stat == "display: block;"){
+                document.getElementById('loading').style.visibility = 'visible';
+                document.getElementById('matched').style.visibility = 'hidden';
+                setTimeout(function () {
+                      getmatchdata();
+                }, 1000)
+              }else{
+                $("#chatlink").attr("href", "/chat/"+returnval.chatroom)
+                document.getElementById('loading').style.visibility = 'hidden';
+                document.getElementById('matched').style.visibility = 'visible';
+              }
+            }
+          }).fail(function() {
+            //some error logic
+          });
+        }
+        $("#{{g.gamename}}startbutton").click(function(){
+          document.getElementById('loading').style.visibility = 'visible';
+          document.getElementById('matched').style.visibility = 'hidden';
+          setTimeout(function(){
+            getmatchdata();
+          }, 2000)
+        })
+      </script>
+      {% endfor %}
     </div>
   </div>
+</div>
+</div>
+
+
 {% else %}
 
-<div id="absolute3">
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-<form method="POST" action="{%url 'login'%}">
-    {% csrf_token %}
-    사용자 이름:
-    <br>
-    <input name="username" type="text" value="">
-    <br>
-    <br>
-    비밀번호:
-    <br>
-    <input name="password" type="password" value="">
-    <br>
-    <br>
-    <input type="submit" value="로그인">
-</form>
-  </div>
-  <div class="mdl-card__supporting-text">
-    <h2 class="mdl-card__title-text"> 로그인하기 </h2>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-        href = "{% url  'signup' %}">
-      회원가입하기
-    </a>
+
+
+<div id="background">
+
+  <div id="loginContainer">
+
+    <div id="inputContainer">
+
+      <form method="POST" action="{%url 'login'%}">
+          {% csrf_token %}
+          <h2>Login to your account</h2>
+          <p>
+            <label for="loginUsername">Your ID</label>
+            <input id="loginUsername" name="username" type="text" value="" placeholder="e.g. bartSimpson" required>
+          </p>
+
+          <p>
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" name="password" placeholder="Your password" required>
+          </p>
+
+          <button type="submit" name="loginButton">LOG IN</button>
+
+          <div class="hasAccountText">
+            <a class="hasAccountText" href = "{% url  'signup' %}">
+              <span id="hideLogin">Don't have an account yet? Sign up here.</span>
+            </a>
+          </div>
+      </form>
+
+    </div>
+
+    <div id="loginText">
+      <h1>Find your gamemates</h1>
+      <h2>Matching service for thousands steam games for free!</h2>
+      <ul>
+        <li>Discover new game that you like</li>
+        <li>Create your own game list</li>
+        <li>Chat with your game friends</li>
+      </ul>
+    </div>
+
+
   </div>
 </div>
-</div>
+
 
 
 {% endif %}
 
-{% endblock %}
+{% endblock content %}
+
