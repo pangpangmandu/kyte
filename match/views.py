@@ -25,7 +25,8 @@ def result(request):
     return render(request, "match/result.html",)
 
 def mypage(request):
-    return render(request,"match/mypage.html" ,)
+    p = Profile.objects.get(user_id = request.user.id)
+    return render(request,"match/newmypage.html" ,{'gameseeds' : GameSeed.objects.all, 'ugame':p.seeds.all } )
 
 def assessment(request):
     return render(request, 'match/assessment.html', )
