@@ -345,3 +345,31 @@ body {
 .searchBarContainer .searchButton img {
   width: 18px;
 }
+
+.mdl-layout__drawer {
+  background-color: #2f3542;
+  z-index: 10;
+}
+
+#logoNameContainer {
+  margin: 10px 10px;
+}
+
+.mdl-layout__drawer #logoNameContainer .siteTitle .mdl-layout-title{
+  display: inline;
+  position: absolute;
+}
+
+.mdl-layout__drawer .logo {
+    margin-left: 1px;
+    margin-bottom: 5px;
+}
+
+.mdl-layout__drawer .logo img {
+    width: 45px;
+}
+
+.mdl-layout__drawer #logoNameContainer .mdl-navigation .mdl-navigation__link {
+  color: #ffffff;
+  text-decoration: none;
+}
