@@ -4,7 +4,7 @@
 
 {% if user.is_authenticated %}
 
-
+<div class="page-content">
 <div class="loader">
   <div class="inner"></div>
 </div>
@@ -32,86 +32,87 @@
 </div>
 
 
-  <div class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">지금 바로 게임을 시작하세요!</h1>
-      <p class="lead text-muted">가장 많은 유저가 즐기고 있는 게임을 바로 시작할 수 있습니다.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">시작하기</a>
-        <a href="#" class="btn btn-secondary my-2">취소하기</a>
-      </p>
-    </div>
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">지금 바로 게임을 시작하세요!</h1>
+    <p class="lead text-muted">가장 많은 유저가 즐기고 있는 게임을 바로 시작할 수 있습니다.</p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">시작하기</a>
+      <a href="#" class="btn btn-secondary my-2">취소하기</a>
+    </p>
   </div>
+</div>
 
-  <div class="album py-0 bg-light">
-    <div class="container">
-      <div class="row">
-        {% for g in ugame %}
-        <!--Card Start-->
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-                  <defs>
-                      <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
-                          <image xlink:href="../../static/match/img/dontstarve.png" x="0" y="0"
-                              width="100%" height="100%" />
-                      </pattern>
-                  </defs>
-                  <rect x="0" y="0" width="100%" height="100%" fill="url(#img1)"/>
-              </svg>
-            <div class="card-body">
-              <p class="card-text">{{g.gamename}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
+<div class="album py-0 bg-light">
+  <div class="container">
+    <div class="row">
+      {% for g in ugame %}
+      <!--Card Start-->
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                <defs>
+                    <pattern id="img1" patternUnits="userSpaceOnUse" width="100%" height="100%">
+                        <image xlink:href="../../static/match/img/dontstarve.png" x="0" y="0"
+                            width="100%" height="100%" />
+                    </pattern>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#img1)"/>
+            </svg>
+          <div class="card-body">
+            <p class="card-text">{{g.gamename}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
 
-                  <button id="{{g.gamename}}startbutton" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">시작하기</button>
+                <button id="{{g.gamename}}startbutton" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">시작하기</button>
 
-                </div>
-                <small class="text-muted">대기중인 인원 : 9</small>
               </div>
+              <small class="text-muted">대기중인 인원 : 9</small>
             </div>
           </div>
         </div>
-        <!--Card End-->
-        <script>
-          var url="/match/gamesearch/";
-          function getmatchdata() {
-            $.ajax({
-              type: "POST",
-              url: url,
-              data: {'name' : '{{g.gamename}}'},
-              dataType: 'html',
-              success: function(data){
-                var returnval = JSON.parse(data)
-                var stat = $("#exampleModalCenter").attr("style");
-                if(returnval.chatroom == null && stat == "display: block;"){
-                  document.getElementById('loading').style.visibility = 'visible';
-                  document.getElementById('matched').style.visibility = 'hidden';
-                  setTimeout(function () {
-                        getmatchdata();
-                  }, 1000)
-                }else{
-                  $("#chatlink").attr("href", "/chat/"+returnval.chatroom)
-                  document.getElementById('loading').style.visibility = 'hidden';
-                  document.getElementById('matched').style.visibility = 'visible';
-                }
-              }
-            }).fail(function() {
-              //some error logic
-            });
-          }
-          $("#{{g.gamename}}startbutton").click(function(){
-            document.getElementById('loading').style.visibility = 'visible';
-            document.getElementById('matched').style.visibility = 'hidden';
-            setTimeout(function(){
-              getmatchdata();
-            }, 2000)
-          })
-        </script>
-        {% endfor %}
       </div>
+      <!--Card End-->
+      <script>
+        var url="/match/gamesearch/";
+        function getmatchdata() {
+          $.ajax({
+            type: "POST",
+            url: url,
+            data: {'name' : '{{g.gamename}}'},
+            dataType: 'html',
+            success: function(data){
+              var returnval = JSON.parse(data)
+              var stat = $("#exampleModalCenter").attr("style");
+              if(returnval.chatroom == null && stat == "display: block;"){
+                document.getElementById('loading').style.visibility = 'visible';
+                document.getElementById('matched').style.visibility = 'hidden';
+                setTimeout(function () {
+                      getmatchdata();
+                }, 1000)
+              }else{
+                $("#chatlink").attr("href", "/chat/"+returnval.chatroom)
+                document.getElementById('loading').style.visibility = 'hidden';
+                document.getElementById('matched').style.visibility = 'visible';
+              }
+            }
+          }).fail(function() {
+            //some error logic
+          });
+        }
+        $("#{{g.gamename}}startbutton").click(function(){
+          document.getElementById('loading').style.visibility = 'visible';
+          document.getElementById('matched').style.visibility = 'hidden';
+          setTimeout(function(){
+            getmatchdata();
+          }, 2000)
+        })
+      </script>
+      {% endfor %}
     </div>
   </div>
+</div>
+</div>
 
 
 {% else %}
